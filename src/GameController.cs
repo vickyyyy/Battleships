@@ -136,23 +136,23 @@ public static class GameController
 	private static void PlayHitSequence(int row, int column, bool showAnimation)
 	{
 		if (showAnimation) {
-			AddExplosion(row, column);
+			UtilityFunctions.AddExplosion(row, column);
 		}
 
-		Audio.PlaySoundEffect(GameSound("Hit"));
+		Audio.PlaySoundEffect(GameResources.GameSound("Hit"));
 
-		DrawAnimationSequence();
+		UtilityFunctions.DrawAnimationSequence();
 	}
 
 	private static void PlayMissSequence(int row, int column, bool showAnimation)
 	{
 		if (showAnimation) {
-			AddSplash(row, column);
+			UtilityFunctions.AddSplash(row, column);
 		}
 
-		Audio.PlaySoundEffect(GameSound("Miss"));
+		Audio.PlaySoundEffect(GameResources.GameSound("Miss"));
 
-		DrawAnimationSequence();
+		UtilityFunctions.DrawAnimationSequence();
 	}
 
 	/// <summary>
@@ -170,30 +170,30 @@ public static class GameController
 		isHuman = object.ReferenceEquals(_theGame.Player, HumanPlayer);
 
 		if (isHuman) {
-			Message = "You " + result.ToString();
+			UtilityFunctions.Message = "You " + result.ToString();
 		} else {
-			Message = "The AI " + result.ToString();
+			UtilityFunctions.Message = "The AI " + result.ToString();
 		}
 
 		switch (result.Value) {
 			case ResultOfAttack.Destroyed:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-				Audio.PlaySoundEffect(GameSound("Sink"));
+				Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
 
 				break;
 			case ResultOfAttack.GameOver:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-				Audio.PlaySoundEffect(GameSound("Sink"));
+				Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
 
-				while (Audio.SoundEffectPlaying(GameSound("Sink"))) {
+				while (Audio.SoundEffectPlaying(GameResources.GameSound("Sink"))) {
 					SwinGame.Delay(10);
 					SwinGame.RefreshScreen();
 				}
 
 				if (HumanPlayer.IsDestroyed) {
-					Audio.PlaySoundEffect(GameSound("Lose"));
+					Audio.PlaySoundEffect(GameResources.GameSound("Lose"));
 				} else {
-					Audio.PlaySoundEffect(GameSound("Winner"));
+					Audio.PlaySoundEffect(GameResources.GameSound("Winner"));
 				}
 
 				break;
@@ -204,7 +204,7 @@ public static class GameController
 				PlayMissSequence(result.Row, result.Column, isHuman);
 				break;
 			case ResultOfAttack.ShotAlready:
-				Audio.PlaySoundEffect(GameSound("Error"));
+				Audio.PlaySoundEffect(GameResources.GameSound("Error"));
 				break;
 		}
 	}
@@ -324,38 +324,38 @@ public static class GameController
 	/// Draws the current state of the game to the screen.
 	/// </summary>
 	/// <remarks>
-	/// What is drawn depends upon the state of the game.
+	/// Draws the game state.
 	/// </remarks>
 
 	public static void DrawScreen()
 	{
-		DrawBackground();
+		UtilityFunctions.DrawBackground();
 
 		switch (CurrentState) {
 			case GameState.ViewingMainMenu:
-				DrawMainMenu();
+				MenuController.DrawMainMenu();
 				break;
 			case GameState.ViewingGameMenu:
-				DrawGameMenu();
+				MenuController.DrawGameMenu();
 				break;
 			case GameState.AlteringSettings:
-				DrawSettings();
+				MenuController.DrawSettings();
 				break;
 			case GameState.Deploying:
-				DrawDeployment();
+				MenuController.DrawDeployment();
 				break;
 			case GameState.Discovering:
-				DrawDiscovery();
+				MenuController.DrawDiscovery();
 				break;
 			case GameState.EndingGame:
-				DrawEndOfGame();
+				MenuController.DrawEndOfGame();
 				break;
 			case GameState.ViewingHighScores:
-				DrawHighScores();
+				MenuController.DrawHighScores();
 				break;
 		}
 
-		DrawAnimations();
+		UtilityFunctions.DrawAnimations();
 
 		SwinGame.RefreshScreen();
 	}
@@ -369,7 +369,7 @@ public static class GameController
 	public static void AddNewState(GameState state)
 	{
 		_state.Push(state);
-		Message = "";
+		UtilityFunctions.Message = "";
 	}
 
 	/// <summary>
