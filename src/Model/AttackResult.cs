@@ -1,3 +1,9 @@
+// =======================================
+// AUTHOR		: Aylwin Sim
+// STUDENT ID	: 100074144
+// DESCRIPTION	: Documentation
+// LAST UPDATED	: 3/9/2017
+// =======================================
 
 using Microsoft.VisualBasic;
 using System;
@@ -94,10 +100,3 @@ public class AttackResult
 		return Text + " " + _Ship.Name;
 	}
 }
-
-//=======================================================
-//Service provided by Telerik (www.telerik.com)
-//Conversion powered by NRefactory.
-//Twitter: @telerik
-//Facebook: facebook.com/telerik
-//=======================================================
