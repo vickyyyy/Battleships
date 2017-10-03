@@ -1,3 +1,9 @@
+// =======================================
+// AUTHOR		: VICKY LIM CHUNG YIN
+// STUDENT ID	: 100065232
+// DESCRIPTION	: BATTLESHIPS
+// LAST UPDATED	: 3/9/2017
+// =======================================
 
 using Microsoft.VisualBasic;
 using System;
@@ -10,7 +16,8 @@ using SwinGameSDK;
 /// <summary>
 /// The battle phase is handled by the DiscoveryController.
 /// </summary>
-static class DiscoveryController
+
+public static class DiscoveryController
 {
 
 	/// <summary>
@@ -20,6 +27,7 @@ static class DiscoveryController
 	/// Escape opens the game menu. Clicking the mouse will
 	/// attack a location.
 	/// </remarks>
+
 	public static void HandleDiscoveryInput()
 	{
 		if (SwinGame.KeyTyped(KeyCode.VK_ESCAPE)) {
@@ -34,6 +42,7 @@ static class DiscoveryController
 	/// <summary>
 	/// Attack the location that the mouse if over.
 	/// </summary>
+
 	private static void DoAttack()
 	{
 		Point2D mouse = default(Point2D);
@@ -55,7 +64,8 @@ static class DiscoveryController
 
 	/// <summary>
 	/// Draws the game during the attack phase.
-	/// </summary>s
+	/// </summary>
+
 	public static void DrawDiscovery()
 	{
 		const int SCORES_LEFT = 172;

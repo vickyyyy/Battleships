@@ -1,3 +1,9 @@
+// =======================================
+// AUTHOR		: VICKY LIM CHUNG YIN
+// STUDENT ID	: 100065232
+// DESCRIPTION	: BATTLESHIPS
+// LAST UPDATED	: 3/9/2017
+// =======================================
 
 using Microsoft.VisualBasic;
 using System;
@@ -12,6 +18,7 @@ using SwinGameSDK;
 /// managing user input, and displaying the current state of the
 /// game.
 /// </summary>
+
 public static class GameController
 {
 	/// <summary>
@@ -26,12 +33,14 @@ public static class GameController
 	private static Stack<GameState> _state = new Stack<GameState>();
 
 	private static AIOption _aiSetting;
+
 	/// <summary>
 	/// Returns the current state of the game, indicating which screen is
 	/// currently being used
 	/// </summary>
 	/// <value>The current state</value>
 	/// <returns>The current state</returns>
+
 	public static GameState CurrentState {
 		get { return _state.Peek(); }
 	}
@@ -69,6 +78,7 @@ public static class GameController
 	/// <remarks>
 	/// Creates an AI player based upon the _aiSetting.
 	/// </remarks>
+
 	public static void StartGame()
 	{
 		if (_theGame != null)
@@ -116,6 +126,7 @@ public static class GameController
 	/// </summary>
 	/// <param name="sender">the grid that changed</param>
 	/// <param name="args">not used</param>
+
 	private static void GridChanged(object sender, EventArgs args)
 	{
 		DrawScreen();
@@ -152,6 +163,7 @@ public static class GameController
 	/// <remarks>
 	/// Displays a message, plays sound and redraws the screen
 	/// </remarks>
+
 	private static void AttackCompleted(object sender, AttackResult result)
 	{
 		bool isHuman = false;
@@ -205,6 +217,7 @@ public static class GameController
 	/// This adds the players to the game before switching
 	/// state.
 	/// </remarks>
+
 	public static void EndDeployment()
 	{
 		//deploy the players
@@ -222,6 +235,7 @@ public static class GameController
 	/// <remarks>
 	/// Checks the attack result once the attack is complete
 	/// </remarks>
+
 	public static void Attack(int row, int col)
 	{
 		AttackResult result = default(AttackResult);
@@ -235,6 +249,7 @@ public static class GameController
 	/// <remarks>
 	/// Checks the attack result once the attack is complete.
 	/// </remarks>
+
 	private static void AIAttack()
 	{
 		AttackResult result = default(AttackResult);
@@ -250,6 +265,7 @@ public static class GameController
 	/// attack</param>
 	/// <remarks>Gets the AI to attack if the result switched
 	/// to the AI player.</remarks>
+
 	private static void CheckAttackResult(AttackResult result)
 	{
 		switch (result.Value) {
@@ -271,6 +287,7 @@ public static class GameController
 	/// actions for the game to perform. The actions
 	/// performed depend upon the state of the game.
 	/// </remarks>
+
 	public static void HandleUserInput()
 	{
 		//Read incoming input events
@@ -309,6 +326,7 @@ public static class GameController
 	/// <remarks>
 	/// What is drawn depends upon the state of the game.
 	/// </remarks>
+
 	public static void DrawScreen()
 	{
 		DrawBackground();
@@ -347,6 +365,7 @@ public static class GameController
 	/// so that it can be returned to.
 	/// </summary>
 	/// <param name="state">the new game state</param>
+
 	public static void AddNewState(GameState state)
 	{
 		_state.Push(state);
@@ -357,6 +376,7 @@ public static class GameController
 	/// End the current state and add in the new state.
 	/// </summary>
 	/// <param name="newState">the new state of the game</param>
+
 	public static void SwitchState(GameState newState)
 	{
 		EndCurrentState();
@@ -366,6 +386,7 @@ public static class GameController
 	/// <summary>
 	/// Ends the current state, returning to the prior state
 	/// </summary>
+
 	public static void EndCurrentState()
 	{
 		_state.Pop();
@@ -375,6 +396,7 @@ public static class GameController
 	/// Sets the difficulty for the next level of the game.
 	/// </summary>
 	/// <param name="setting">the new difficulty level</param>
+
 	public static void SetDifficulty(AIOption setting)
 	{
 		_aiSetting = setting;

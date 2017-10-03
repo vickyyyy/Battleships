@@ -1,3 +1,9 @@
+// =======================================
+// AUTHOR		: VICKY LIM CHUNG YIN
+// STUDENT ID	: 100065232
+// DESCRIPTION	: BATTLESHIPS
+// LAST UPDATED	: 3/9/2017
+// =======================================
 
 using Microsoft.VisualBasic;
 using System;
@@ -10,7 +16,7 @@ using System.Diagnostics;
 /// The game logic is where the game is loaded.
 /// </summary>
 
-static class GameLogic
+public static class GameLogic
 {
 	public static void Main()
 	{

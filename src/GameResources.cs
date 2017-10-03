@@ -1,3 +1,9 @@
+// =======================================
+// AUTHOR		: VICKY LIM CHUNG YIN
+// STUDENT ID	: 100065232
+// DESCRIPTION	: BATTLESHIPS
+// LAST UPDATED	: 3/9/2017
+// =======================================
 
 using Microsoft.VisualBasic;
 using System;

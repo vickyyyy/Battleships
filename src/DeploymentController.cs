@@ -1,3 +1,9 @@
+// =======================================
+// AUTHOR		: VICKY LIM CHUNG YIN
+// STUDENT ID	: 100065232
+// DESCRIPTION	: BATTLESHIPS
+// LAST UPDATED	: 3/9/2017
+// =======================================
 
 using Microsoft.VisualBasic;
 using System;
@@ -12,11 +18,12 @@ using SwinGameSDK;
 /// during the deployment phase.
 /// </summary>
 
-static class DeploymentController
+public static class DeploymentController
 {
 	/// <summary>
 	/// Declaring the ship's assets.
 	/// </summary>
+
 	private const int SHIPS_TOP = 98;
 	private const int SHIPS_LEFT = 20;
 	private const int SHIPS_HEIGHT = 90;
@@ -41,6 +48,7 @@ static class DeploymentController
 	private static Direction _currentDirection = Direction.UpDown;
 
 	private static ShipName _selectedShip = ShipName.Tug;
+
 	/// <summary>
 	/// Handles user input for the Deployment phase of the game.
 	/// </summary>
@@ -49,6 +57,7 @@ static class DeploymentController
 	/// of the ships to add, randomising deployment, end then ending
 	/// deployment
 	/// </remarks>
+
 	public static void HandleDeploymentInput()
 	{
 		if (SwinGame.KeyTyped(KeyCode.VK_ESCAPE)) {
@@ -95,6 +104,7 @@ static class DeploymentController
 	/// If the click is in the grid it deploys to the selected location
 	/// with the indicated direction
 	/// </remarks>
+
 	private static void DoDeployClick()
 	{
 		Point2D mouse = default(Point2D);
@@ -124,6 +134,7 @@ static class DeploymentController
 	/// Draws the deployment screen showing the field and the ships
 	/// that the player can deploy.
 	/// </summary>
+
 	public static void DrawDeployment()
 	{
 		DrawField(HumanPlayer.PlayerGrid, HumanPlayer, true);
@@ -172,6 +183,7 @@ static class DeploymentController
 	/// Gets the ship that the mouse is currently over in the selection panel.
 	/// </summary>
 	/// <returns>The ship selected or none</returns>
+
 	private static ShipName GetShipMouseIsOver()
 	{
 		foreach (ShipName sn in Enum.GetValues(typeof(ShipName))) {

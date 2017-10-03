@@ -1,3 +1,9 @@
+// =======================================
+// AUTHOR		: VICKY LIM CHUNG YIN
+// STUDENT ID	: 100065232
+// DESCRIPTION	: BATTLESHIPS
+// LAST UPDATED	: 3/9/2017
+// =======================================
 
 using Microsoft.VisualBasic;
 using System;
@@ -12,12 +18,13 @@ using SwinGameSDK;
 /// of a game.
 /// </summary>
 
-static class EndingGameController
+public static class EndingGameController
 {
 
 	/// <summary>
 	/// Draw the end of the game screen, shows the win/lose state
 	/// </summary>
+
 	public static void DrawEndOfGame()
 	{
 		DrawField(ComputerPlayer.PlayerGrid, ComputerPlayer, true);
@@ -34,6 +41,7 @@ static class EndingGameController
 	/// Handle the input during the end of the game. Any interaction
 	/// will result in it reading in the highsSwinGame.
 	/// </summary>
+
 	public static void HandleEndOfGameInput()
 	{
 		if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.VK_RETURN) || SwinGame.KeyTyped(KeyCode.VK_ESCAPE)) {
