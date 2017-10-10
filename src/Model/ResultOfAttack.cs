@@ -1,45 +1,31 @@
-// =======================================
-// AUTHOR		: Aylwin Sim
-// STUDENT ID	: 100074144
-// DESCRIPTION	: Documentation
-// LAST UPDATED	: 3/9/2017
-// =======================================
-
-using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-
-
-/// <summary>
-/// The result of an attack.
-/// </summary>
-public enum ResultOfAttack
+﻿using System;
+namespace MyGame
 {
-	/// <summary>
-	/// The player hit something
-	/// </summary>
-	Hit,
+	public enum ResultOfAttack
+	{
+		/// <summary>
+		/// The player hit something
+		/// </summary>
+		Hit,
 
-	/// <summary>
-	/// The player missed
-	/// </summary>
-	Miss,
+		/// <summary>
+		/// The player missed
+		/// </summary>
+		Miss,
 
-	/// <summary>
-	/// The player destroyed a ship
-	/// </summary>
-	Destroyed,
+		/// <summary>
+		/// The player destroyed a ship
+		/// </summary>
+		Destroyed,
 
-	/// <summary>
-	/// That location was already shot.
-	/// </summary>
-	ShotAlready,
+		/// <summary>
+		/// That location was already shot.
+		/// </summary>
+		ShotAlready,
 
-	/// <summary>
-	/// The player killed all of the opponents ships
-	/// </summary>
-	GameOver
+		/// <summary>
+		/// The player killed all of the opponents ships
+		/// </summary>
+		GameOver
+	}
 }
