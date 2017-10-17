@@ -1,10 +1,16 @@
-﻿///MD Shahrior Shawon Prio
-/// ID:101209112
-using System;
-using System.Collections.Generic;
+﻿///MD Shahrior hawon Prio
+/// ID: 101209112
+	using System;
+	using System.Collections;
+	using System.Collections.Generic;
 namespace MyGame
 {
-	public class AIMediumPlayer:AIPlayer
+
+	/// <summary>
+	/// The AIMediumPlayer is a type of AIPlayer where it will try and destroy a ship
+	/// if it has found a ship
+	/// </summary>
+	public class AIEasyPlayer : AIPlayer
 	{
 		/// <summary>
 		/// Private enumarator for AI states. currently there are two states,
@@ -20,13 +26,14 @@ namespace MyGame
 		private AIStates _CurrentState = AIStates.Searching;
 
 		private Stack<Location> _Targets = new Stack<Location> ();
-		public AIMediumPlayer (BattleShipsGame controller) : base (controller)
+
+		public AIEasyPlayer (BattleShipsGame controller) : base (controller)
 		{
 		}
 
 		/// <summary>
 		/// GenerateCoordinates should generate random shooting coordinates
-		/// only when it has not found a ship, or has destroyed a ship and 
+		/// only when it has not found a ship, or has destroyed a ship and
 		/// needs new shooting coordinates
 		/// </summary>
 		/// <param name="row">the generated row</param>
@@ -90,10 +97,10 @@ namespace MyGame
 		{
 			if (result.Value == ResultOfAttack.Hit) {
 				_CurrentState = AIStates.TargetingShip;
-				AddTarget (row - 1, col);
-				AddTarget (row, col - 1);
-				AddTarget (row + 1, col);
-				AddTarget (row, col + 1);
+				AddTarget (row - 1, col - 1);
+				AddTarget (row + 1, col + 1);
+				AddTarget (row + 1, col - 1);
+				AddTarget (row - 1, col + 1);
 			} else if (result.Value == ResultOfAttack.ShotAlready) {
 				throw new ApplicationException ("Error in AI");
 			}
@@ -111,7 +118,6 @@ namespace MyGame
 				_Targets.Push (new Location (row, column));
 			}
 		}
-
-
 	}
 }
+	

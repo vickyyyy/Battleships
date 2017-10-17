@@ -99,6 +99,7 @@
     <Compile Include="src\Model\ShipName.cs" />
     <Compile Include="src\Model\Tile.cs" />
     <Compile Include="src\Model\TileView.cs" />
+    <Compile Include="src\Model\AIEasyPlayers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SwinGame">
@@ -106,6 +107,9 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>packages\NUnit.3.8.1\lib\net40\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\animations\startup.txt">
@@ -222,6 +226,7 @@
     <None Include="Resources\sounds\watershot.wav" />
     <None Include="Resources\sounds\winner.wav" />
     <None Include="Resources\fonts\ffaccess.ttf" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Target Name="CopyFiles">
     <Copy SourceFiles="@(MacLibraryFiles)" DestinationFolder="$(OutDir)" />

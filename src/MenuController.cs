@@ -1,4 +1,7 @@
-﻿using System;
+﻿///MD Shahrior Shawon Prio
+/// ID:101209112
+using System;
+using System.Collections.Generic;
 using SwinGameSDK;
 
 namespace MyGame
@@ -16,21 +19,29 @@ namespace MyGame
 			"PLAY",
 			"SETUP",
 			"SCORES",
+			"MUTE",
+			"BGM",
 			"QUIT"
 		},
 		new string[] {
 			"RETURN",
 			"SURRENDER",
+			"MUTE",
+			"RESTART",
 			"QUIT"
+
 		},
 		new string[] {
 			"EASY",
 			"MEDIUM",
 			"HARD"
+		},
+		new string[]{
+			"BGM 1",
+			"BGM 2",
+			"BGM 3"
 		}
-
 	};
-
 		private const int MENU_TOP = 575;
 		private const int MENU_LEFT = 30;
 		private const int MENU_GAP = 0;
@@ -41,22 +52,34 @@ namespace MyGame
 		private const int TEXT_OFFSET = 0;
 		private const int MAIN_MENU = 0;
 		private const int GAME_MENU = 1;
-
 		private const int SETUP_MENU = 2;
+		private const int BGM_MENU = 3;
+
+
 		private const int MAIN_MENU_PLAY_BUTTON = 0;
 		private const int MAIN_MENU_SETUP_BUTTON = 1;
 		private const int MAIN_MENU_TOP_SCORES_BUTTON = 2;
+		private const int MAIN_MENU_MUTE_BUTTON = 3;
+		private const int MAIN_MENU_BGM_BUTTON = 4;
 
-		private const int MAIN_MENU_QUIT_BUTTON = 3;
+		private const int MAIN_MENU_QUIT_BUTTON = 5;
 		private const int SETUP_MENU_EASY_BUTTON = 0;
 		private const int SETUP_MENU_MEDIUM_BUTTON = 1;
 		private const int SETUP_MENU_HARD_BUTTON = 2;
 
+		private const int BGM_MENU_1 = 0;
+		private const int BGM_MENU_2 = 1;
+		private const int BGM_MENU_3 = 2;
+
 		private const int SETUP_MENU_EXIT_BUTTON = 3;
 		private const int GAME_MENU_RETURN_BUTTON = 0;
 		private const int GAME_MENU_SURRENDER_BUTTON = 1;
+		private const int GAME_MENU_MUTE_BUTTON = 2;
+		private const int GAME_MENU_RESTART_BUTTON = 3;
 
-		private const int GAME_MENU_QUIT_BUTTON = 2;
+		private const int GAME_MENU_QUIT_BUTTON = 4;
+		private static bool isMute = false;
+		private static int bgmPlaying = 1;
 		private static readonly Color MENU_COLOR = SwinGame.RGBAColor (2, 167, 252, 255);
 
 		private static readonly Color HIGHLIGHT_COLOR = SwinGame.RGBAColor (1, 57, 86, 255);
@@ -82,7 +105,15 @@ namespace MyGame
 				HandleMenuInput (MAIN_MENU, 0, 0);
 			}
 		}
+		public static void HandleBGMMenuInput ()
+		{
+			bool handled = false;
+			handled = HandleMenuInput (BGM_MENU, 1, 4);
 
+			if (!handled) {
+				HandleMenuInput (MAIN_MENU, 0, 0);
+			}
+		}
 		/// <summary>
 		/// Handle input in the game menu.
 		/// </summary>
@@ -163,7 +194,14 @@ namespace MyGame
 			DrawButtons (MAIN_MENU);
 			DrawButtons (SETUP_MENU, 1, 1);
 		}
+		public static void DrawBGMSettings ()
+		{
+			//Clears the Screen to Black
+			//SwinGame.DrawText("Settings", Color.White, GameFont("ArialLarge"), 50, 50)
 
+			DrawButtons (MAIN_MENU);
+			DrawButtons (BGM_MENU, 1, 4);
+		}
 		/// <summary>
 		/// Draw the buttons associated with a top level menu.
 		/// </summary>
@@ -244,6 +282,9 @@ namespace MyGame
 			case GAME_MENU:
 				PerformGameMenuAction (button);
 				break;
+			case BGM_MENU:
+				PerformBGMMenuAction (button);
+				break;
 			}
 		}
 
@@ -262,6 +303,12 @@ namespace MyGame
 				break;
 			case MAIN_MENU_TOP_SCORES_BUTTON:
 				GameController.AddNewState (GameState.ViewingHighScores);
+				break;
+			case MAIN_MENU_MUTE_BUTTON:
+				Mute ();
+				break;
+			case MAIN_MENU_BGM_BUTTON:
+				GameController.AddNewState (GameState.BGMSettings);
 				break;
 			case MAIN_MENU_QUIT_BUTTON:
 				GameController.EndCurrentState ();
@@ -289,6 +336,28 @@ namespace MyGame
 			//Always end state - handles exit button as well
 			GameController.EndCurrentState ();
 		}
+		private static void PerformBGMMenuAction (int button)
+		{
+			switch (button) {
+			case BGM_MENU_1:
+				Audio.StopMusic ();
+				SwinGame.PlayMusic (GameResources.GameMusic ("Background"));
+				bgmPlaying = 1;
+				break;
+			case BGM_MENU_2:
+				Audio.StopMusic ();
+				SwinGame.FadeMusicIn (GameResources.GameMusic ("BGM1"), 3000);
+				bgmPlaying = 2;
+				break;
+			case BGM_MENU_3:
+				Audio.StopMusic ();
+				SwinGame.FadeMusicIn (GameResources.GameMusic ("BGM2"), 3000);
+				bgmPlaying = 3;
+				break;
+			}
+			//Always end state - handles exit button as well
+			GameController.EndCurrentState ();
+		}
 
 		/// <summary>
 		/// The game menu was clicked, perform the button's action.
@@ -306,12 +375,48 @@ namespace MyGame
 				GameController.EndCurrentState ();
 				//end game
 				break;
+			case GAME_MENU_MUTE_BUTTON:
+				Mute ();
+				break;
+			case GAME_MENU_RESTART_BUTTON:
+				GameController.EndCurrentState ();
+				//end game menu
+				GameController.EndCurrentState ();
+				//end game
+				GameController.StartGame ();
+				break;
+
 			case GAME_MENU_QUIT_BUTTON:
 				GameController.AddNewState (GameState.Quitting);
 				break;
 			}
 		}
 
-
+		private static void Mute ()
+		{
+			if (isMute == false) {
+				Audio.CloseAudio ();
+				isMute = true;
+			} else {
+				Audio.OpenAudio ();
+				switch (bgmPlaying) {
+				case 1:
+					SwinGame.PlayMusic (GameResources.GameMusic ("Background"));
+					isMute = false;
+					break;
+				case 2:
+					SwinGame.FadeMusicIn (GameResources.GameMusic ("BGM1"), 3000);
+					isMute = false;
+					break;
+				case 3:
+					SwinGame.FadeMusicIn (GameResources.GameMusic ("BGM2"), 3000);
+					isMute = false;
+					break;
+				}
+			}
+		}
 	}
 }
+
+
+

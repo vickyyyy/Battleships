@@ -23,6 +23,8 @@ namespace MyGame
 		/// </summary>
 		AlteringSettings,
 
+		BGMSettings,
+
 		/// <summary>
 		/// Players are deploying their ships
 		/// </summary>
