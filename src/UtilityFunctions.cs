@@ -1,11 +1,7 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections;
+﻿///MD Shahrior Shawon Prio
+/// ID:101209112
 using System.Collections.Generic;
-//using System.Data;
-using System.Diagnostics;
 using SwinGameSDK;
-using System.Timers;
 using MyGame;
 
 /// <summary>
@@ -367,11 +363,3 @@ static class UtilityFunctions
 		}
 	}
 }
-
-
-//=======================================================
-//Service provided by Telerik (www.telerik.com)
-//Conversion powered by NRefactory.
-//Twitter: @telerik
-//Facebook: facebook.com/telerik
-//=======================================================
