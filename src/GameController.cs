@@ -338,7 +338,53 @@ namespace MyGame
 				break;
 			case GameState.Discovering:
 				DiscoveryController.DrawDiscovery ();
-				break;
+
+                    if (_ai.Ship(ShipName.AircraftCarrier).IsDestroyed)
+                    {
+                        SwinGame.DrawText("CARRIER", Color.Red, GameResources.GameFont("Menuna"), 240, 440);
+                    } else
+                    {
+                        SwinGame.DrawText("CARRIER", Color.Green, GameResources.GameFont("Menuna"), 240, 440);
+                    }
+
+                    if (_ai.Ship(ShipName.Battleship).IsDestroyed)
+                    {
+                        SwinGame.DrawText("BATTLESHIP", Color.Red, GameResources.GameFont("Menuna"), 240, 450);
+                    }
+                    else
+                    {
+                        SwinGame.DrawText("BATTLESHIP", Color.Green, GameResources.GameFont("Menuna"), 240, 450);
+                    }
+
+                    if (_ai.Ship(ShipName.Destroyer).IsDestroyed)
+                    {
+                        SwinGame.DrawText("DESTROYER", Color.Green, GameResources.GameFont("Menuna"), 240, 460);
+                    }
+                    else
+                    {
+                        SwinGame.DrawText("DESTROYER", Color.Green, GameResources.GameFont("Menuna"), 240, 460);
+                    }
+                    
+                    if (_ai.Ship(ShipName.Submarine).IsDestroyed)
+                    {
+                        SwinGame.DrawText("SUBMARINE", Color.Red, GameResources.GameFont("Menuna"), 240, 470);
+                    }
+                    else
+                    {
+                        SwinGame.DrawText("SUBMARINE", Color.Green, GameResources.GameFont("Menuna"), 240, 470);
+
+                    }
+                    
+                    if (_ai.Ship(ShipName.Tug).IsDestroyed)
+                    {
+                        SwinGame.DrawText("TUG", Color.Red, GameResources.GameFont("Menuna"), 240, 480);
+                    }
+                    else
+                    {
+                        SwinGame.DrawText("TUG", Color.Green, GameResources.GameFont("Menuna"), 240, 480);
+                    }
+                    
+                    break;
 			case GameState.EndingGame:
 				EndingGameController.DrawEndOfGame ();
 				break;

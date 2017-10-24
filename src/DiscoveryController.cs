@@ -76,7 +76,7 @@ namespace MyGame
             {
                 SwinGame.ToggleFullScreen();
             }
-
+            
             if (SwinGame.KeyTyped (KeyCode.vk_F2))
             {
                 SwinGame.TakeScreenshot("new image");
@@ -94,6 +94,8 @@ namespace MyGame
             {
                 SwinGame.DrawText("Hold Zero if you need to", Color.GreenYellow, GameResources.GameFont("Menu"), 600, 100);
             }
+
+            
 		}
 	}
 }

@@ -40,7 +40,12 @@ namespace MyGame
 
 		public static void HandleDeploymentInput ()
 		{
-			if (SwinGame.KeyTyped (KeyCode.vk_ESCAPE)) {
+            
+
+
+
+
+            if (SwinGame.KeyTyped (KeyCode.vk_ESCAPE)) {
 				GameController.AddNewState (GameState.ViewingGameMenu);
 			}
 
@@ -116,9 +121,15 @@ namespace MyGame
 		public static void DrawDeployment ()
 		{
 			UtilityFunctions.DrawField (GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer, true);
+            SwinGame.DrawText("TUG", Color.Green, GameResources.GameFont("Menun"),240, 88);
+            SwinGame.DrawText("SUBMARINE", Color.Green, GameResources.GameFont("Menun"), 140, 180);
+            SwinGame.DrawText("DESTROYER", Color.Green, GameResources.GameFont("Menun"), 134, 265);
+            SwinGame.DrawText("BATTLESHIP", Color.Green, GameResources.GameFont("Menun"), 134, 352);
+            SwinGame.DrawText("AIRCRAFT CARRIER", Color.Green, GameResources.GameFont("Menun"), 30, 440);
 
-			//Draw the Left/Right and Up/Down buttons
-			if (_currentDirection == Direction.LeftRight) {
+
+            //Draw the Left/Right and Up/Down buttons
+            if (_currentDirection == Direction.LeftRight) {
 				SwinGame.DrawBitmap (GameResources.GameImage ("LeftRightButton"), LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP);
 				//SwinGame.DrawText("U/D", Color.Gray, GameFont("Menu"), UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP)
 				//SwinGame.DrawText("L/R", Color.White, GameFont("Menu"), LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP)
