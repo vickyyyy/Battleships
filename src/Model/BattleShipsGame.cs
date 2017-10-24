@@ -19,6 +19,11 @@ namespace MyGame
 		/// </remarks>
 		public event AttackCompletedHandler AttackCompleted;
 
+		/// <summary>
+		/// Activate special skill
+		/// </summary>
+		private bool _specialSkill = true;
+
 		private Player [] _players = new Player [3];
 
 		private int _playerIndex = 0;
@@ -72,6 +77,16 @@ namespace MyGame
 			int otherPlayer = (_playerIndex + 1) % 2;
 
 			newAttack = Player.Shoot (row, col);
+
+			// Only human player can have special skill
+			if ((otherPlayer == 1 )&&(_specialSkill == true)) {
+				if ((row < 9 && row > 2) && (col < 9 && col > 2)) {
+					newAttack = Player.Shoot (row + 1, col);
+					newAttack = Player.Shoot (row - 1, col);
+					_specialSkill = false;
+				}
+			}
+
 
 			//Will exit the game when all players ships are destroyed
 			if (_players [otherPlayer].IsDestroyed) {

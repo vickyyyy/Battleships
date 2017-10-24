@@ -43,6 +43,7 @@ namespace MyGame
 		/// </summary>
 		private int _misses;
 
+
 		/// <summary>
 		/// Returns the game that the player is part of.
 		/// </summary>
@@ -77,7 +78,7 @@ namespace MyGame
 				}
 			}
 
-			RandomizeDeployment ();
+			RandomizeDeployment();
 		}
 
 		/// <summary>
@@ -221,10 +222,11 @@ namespace MyGame
 		/// <returns>the result of the attack</returns>
 		internal AttackResult Shoot (int row, int col)
 		{
-			_shots += 1;
 			AttackResult result = default (AttackResult);
+			_shots += 1;
 			result = EnemyGrid.HitTile (row, col);
 
+			
 			switch (result.Value) {
 			case ResultOfAttack.Destroyed:
 			case ResultOfAttack.Hit:
@@ -233,10 +235,13 @@ namespace MyGame
 			case ResultOfAttack.Miss:
 				_misses += 1;
 				break;
+				
 			}
 
 			return result;
 		}
+
+
 
 		/// <summary>
 		/// Randomizes the deployment.

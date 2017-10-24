@@ -73,6 +73,5 @@ namespace MyGame
 		{
 			return _MyGrid.HitTile (row, col);
 		}
-
 	}
 }
