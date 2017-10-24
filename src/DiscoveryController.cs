@@ -21,6 +21,11 @@ namespace MyGame
 			if (SwinGame.MouseClicked (MouseButton.LeftButton) | SwinGame.MouseClicked (MouseButton.RightButton)) {
 				DoAttack ();
 			}
+
+			/// User can use SpaceBar to activate SpecialSkill
+			if (SwinGame.KeyTyped (KeyCode.vk_SPACE)) {
+				BattleShipsGame.isSpecialSkill (true);
+			}
 		}
 
 		/// <summary>

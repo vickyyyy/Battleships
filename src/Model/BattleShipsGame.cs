@@ -20,9 +20,9 @@ namespace MyGame
 		public event AttackCompletedHandler AttackCompleted;
 
 		/// <summary>
-		/// Activate special skill
+		/// special skill
 		/// </summary>
-		private bool _specialSkill = true;
+		private static bool _specialSkill = false;
 
 		private Player [] _players = new Player [3];
 
@@ -103,6 +103,14 @@ namespace MyGame
 			}
 
 			return newAttack;
+		}
+
+		/// <summary>
+		/// Set the _specialSkill to true each time when user press SPACEBAR
+		/// </summary>
+		public static void isSpecialSkill (bool t)
+		{
+			_specialSkill = t;
 		}
 	}
 }
