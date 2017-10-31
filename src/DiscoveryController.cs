@@ -67,6 +67,11 @@ namespace MyGame
 				UtilityFunctions.DrawField (GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, false);
 			}
 
+            if (SwinGame.KeyTyped (KeyCode.vk_9))
+            {
+                GameController.HumanPlayer.RandomizeDeployment();
+            }
+
             if(SwinGame.KeyDown(KeyCode.vk_0))
             {
                 UtilityFunctions.DrawField(GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
@@ -88,14 +93,18 @@ namespace MyGame
 			SwinGame.DrawText (GameController.HumanPlayer.Shots.ToString (), Color.White, GameResources.GameFont ("Menu"), SCORES_LEFT, SHOTS_TOP);
 			SwinGame.DrawText (GameController.HumanPlayer.Hits.ToString (), Color.White, GameResources.GameFont ("Menu"), SCORES_LEFT, HITS_TOP);
 			SwinGame.DrawText (GameController.HumanPlayer.Missed.ToString (), Color.White, GameResources.GameFont ("Menu"), SCORES_LEFT, SPLASH_TOP);
+            SwinGame.DrawText("Do not run away", Color.Green, GameResources.GameFont("Menu"), 450, 90);
             SwinGame.DrawText("Do not give up", Color.Green, GameResources.GameFont("Menu"), 600, 90);
-            
-            if(UtilityFunctions.IsMouseInRectangle(600,90,70,10))
+            if (UtilityFunctions.IsMouseInRectangle(600,90,70,10))
             {
                 SwinGame.DrawText("Hold Zero if you need to", Color.GreenYellow, GameResources.GameFont("Menu"), 600, 100);
             }
+            if (UtilityFunctions.IsMouseInRectangle(450, 90, 70, 10))
+            {
+                SwinGame.DrawText("Press Nine to run", Color.GreenYellow, GameResources.GameFont("Menu"), 450, 100);
+            }
 
-            
-		}
+
+        }
 	}
 }
