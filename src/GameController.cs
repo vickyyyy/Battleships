@@ -8,6 +8,7 @@
 using System;
 using SwinGameSDK;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace MyGame
 {
@@ -428,6 +429,11 @@ namespace MyGame
 		public static void EndCurrentState ()
 		{
 			_state.Pop ();
+		}
+
+		public static void Sharing ()
+		{
+			Process.Start("http://www.facebook.com");
 		}
 
 		/// <summary>
