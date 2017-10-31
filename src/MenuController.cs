@@ -22,7 +22,8 @@ namespace MyGame
 			"MUTE",
 			"BGM",
 			"Share",
-			"QUIT"
+			"QUIT",
+            "2 Player"
 		},
 		new string[] {
 			"RETURN",
@@ -65,6 +66,7 @@ namespace MyGame
 
 		private const int MAIN_MENU_QUIT_BUTTON = 6;
 		private const int MAIN_MENU_SHARE_BUTTON = 5;
+        private const int MAIN_MENU_TWO_PLAYER = 7;
 
 		private const int SETUP_MENU_EASY_BUTTON = 0;
 		private const int SETUP_MENU_MEDIUM_BUTTON = 1;
@@ -319,6 +321,9 @@ namespace MyGame
 			case MAIN_MENU_QUIT_BUTTON:
 				GameController.EndCurrentState ();
 				break;
+                case MAIN_MENU_TWO_PLAYER:
+                    GameController.StartsGame();
+                    break;
 			}
 		}
 
