@@ -363,7 +363,7 @@ namespace MyGame
 
                     if (_ai.Ship(ShipName.Destroyer).IsDestroyed)
                     {
-                        SwinGame.DrawText("DESTROYER", Color.Green, GameResources.GameFont("Menuna"), 240, 460);
+                        SwinGame.DrawText("DESTROYER", Color.Red, GameResources.GameFont("Menuna"), 240, 460);
                     }
                     else
                     {
