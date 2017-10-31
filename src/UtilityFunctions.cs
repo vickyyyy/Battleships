@@ -131,7 +131,7 @@ static class UtilityFunctions
 				counter--;
 			}
 		}
-		if (GameController.CurrentState == GameState.Discovering)
+		if (GameController.CurrentState == GameState.Discovering && !small)
 			SwinGame.DrawText ("Counter: " + counter, Color.Yellow, GameResources.GameFont ("Courier"), rowTop + 110, colLeft + 100);
 
 		//Draw Timer
@@ -141,11 +141,12 @@ static class UtilityFunctions
 		}
 		var second = timer.Ticks / 1000;
 		var minute = timer.Ticks / 60000;
-		if (GameController.CurrentState == GameState.Discovering)
+		if (GameController.CurrentState == GameState.Discovering) {
 			SwinGame.DrawText ("Timer: " + minute + ":" + second % 60, Color.Yellow, GameResources.GameFont ("Courier"), rowTop = 230, colLeft + 100);
+		} 
 
-		//Draw the grid
-		for (int row = 0; row <= 9; row++) {
+	 //Draw the grid
+	 for (int row = 0; row <= 9; row++) {
 			rowTop = top + (cellGap + cellHeight) * row;
 
 			for (int col = 0; col <= 9; col++) {
