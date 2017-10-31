@@ -327,9 +327,11 @@ namespace MyGame
 			switch (CurrentState) {
 			case GameState.ViewingMainMenu:
 				MenuController.DrawMainMenu ();
+				UtilityFunctions.Timer.Reset ();
 				break;
 			case GameState.ViewingGameMenu:
 				MenuController.DrawGameMenu ();
+				UtilityFunctions.Timer.Pause ();
 				break;
 			case GameState.AlteringSettings:
 				MenuController.DrawSettings ();
@@ -339,6 +341,8 @@ namespace MyGame
 				break;
 			case GameState.Discovering:
 				DiscoveryController.DrawDiscovery ();
+
+				UtilityFunctions.Timer.Resume ();
 
                     if (_ai.Ship(ShipName.AircraftCarrier).IsDestroyed)
                     {

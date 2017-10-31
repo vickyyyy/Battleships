@@ -102,6 +102,11 @@ static class UtilityFunctions
 	static SwinGameSDK.Timer timer = new SwinGameSDK.Timer ();
 	static bool startTimer = false;
 
+	public static Timer Timer {
+		get { return timer; }
+		set { timer = value; }
+	}
+
 	/// <summary>
 	/// Draws the player's grid and ships.
 	/// </summary>
@@ -143,10 +148,11 @@ static class UtilityFunctions
 		var minute = timer.Ticks / 60000;
 		if (GameController.CurrentState == GameState.Discovering) {
 			SwinGame.DrawText ("Timer: " + minute + ":" + second % 60, Color.Yellow, GameResources.GameFont ("Courier"), rowTop = 230, colLeft + 100);
-		} 
+		}
 
-	 //Draw the grid
-	 for (int row = 0; row <= 9; row++) {
+
+		//Draw the grid
+		for (int row = 0; row <= 9; row++) {
 			rowTop = top + (cellGap + cellHeight) * row;
 
 			for (int col = 0; col <= 9; col++) {
