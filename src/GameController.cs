@@ -82,6 +82,9 @@ namespace MyGame
 
 			//create the players
 			switch (_aiSetting) {
+				case AIOption.Easy:
+				_ai = new AIEasyPlayer (_theGame);
+				break;
 			case AIOption.Medium:
 				_ai = new AIMediumPlayer (_theGame);
 				break;
@@ -89,7 +92,7 @@ namespace MyGame
 				_ai = new AIHardPlayer (_theGame);
 				break;
 			default:
-				_ai = new AIMediumPlayer (_theGame);
+				_ai = new AIEasyPlayer (_theGame);
 				break;
 			}
 
@@ -113,6 +116,9 @@ namespace MyGame
             //create the players
             switch (_aiSetting)
             {
+				case AIOption.Easy:
+				_ai = new AIEasyPlayer (_theGame);
+				break;
                 case AIOption.Medium:
                     _ai = new AIMediumPlayer(_theGame);
                     break;
@@ -120,7 +126,7 @@ namespace MyGame
                     _ai = new AIHardPlayer(_theGame);
                     break;
                 default:
-                    _ai = new AIMediumPlayer(_theGame);
+                    _ai = new AIEasyPlayer(_theGame);
                     break;
             }
 
