@@ -6,12 +6,13 @@ namespace MyGame
 	[TestFixture()]
 	public class SpecialSkillTest
 	{
-
 		[Test()]
 		public void ActivateSkillTest ()
 		{
 			// When SpaceBar is tap, the special skill is activated.
 			BattleShipsGame b = new BattleShipsGame ();
+
+			Assert.AreEqual (b.SpecialSKill, false);
 
 			BattleShipsGame.isSpecialSkill (true);
 
@@ -24,6 +25,8 @@ namespace MyGame
 			BattleShipsGame b = new BattleShipsGame ();
 
 			BattleShipsGame.isSpecialSkill (true);
+
+			Assert.AreEqual (b.SpecialSKill, true);
 
 			b.Shoot ();
 
