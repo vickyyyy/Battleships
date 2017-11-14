@@ -24,6 +24,12 @@ namespace MyGame
 		/// </summary>
 		private static bool _specialSkill = false;
 
+
+		/// <summary>
+		/// Store the tiles hit
+		/// </summary>
+		private int _numberHits = 0;
+
 		private Player [] _players = new Player [3];
 
 		private int _playerIndex = 0;
@@ -80,9 +86,11 @@ namespace MyGame
 
 			// Only human player can have special skill
 			if ((otherPlayer == 1 )&&(_specialSkill == true)) {
-				if ((row < 9 && row > 2) && (col < 9 && col > 2)) {
+				if ((row < 9 && row > 1) && (col < 9 && col > 1)) {
 					newAttack = Player.Shoot (row + 1, col);
 					newAttack = Player.Shoot (row - 1, col);
+					newAttack = Player.Shoot (row, col + 1);
+					newAttack = Player.Shoot (row, col - 1);
 					_specialSkill = false;
 				}
 			}
@@ -103,6 +111,35 @@ namespace MyGame
 			}
 
 			return newAttack;
+		}
+
+		// When SpecialSkill is activated, the shots is increased to 5;
+		public int Shoot ()
+		{
+			if (_specialSkill == true) 
+			{
+				_numberHits = 5;
+				_specialSkill = false;
+			}
+
+			return _numberHits;		}
+
+		// read accessor for Special Skill
+		public bool SpecialSKill 
+		{
+			get 
+			{
+				return _specialSkill;
+			}
+		}
+
+		// read the number of shots
+		public int NumberHit 
+		{
+			get 
+			{
+				return _numberHits;
+			}	
 		}
 
 		/// <summary>
